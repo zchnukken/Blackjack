@@ -1,0 +1,13 @@
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\bin\Debug\maraTest.exe.config
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\bin\Debug\maraTest.exe
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\bin\Debug\maraTest.pdb
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.csprojResolveAssemblyReference.cache
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\MainWindow.baml
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\MainWindow.g.cs
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\App.g.cs
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest_MarkupCompile.cache
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.g.resources
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.Properties.Resources.resources
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.csproj.GenerateResource.Cache
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.exe
+c:\users\sneeky\documents\visual studio 2013\Projects\maraTest\obj\Debug\maraTest.pdb
