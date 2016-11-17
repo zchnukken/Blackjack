@@ -195,7 +195,7 @@ namespace Blackjack.Model
         }
         public override void action(BJLoopContext context)
         {
-            //wanted to do a for each in loop but it wouldnt let me
+            // wanted to do a for each in loop but it wouldnt let me
             if (BJLogicHelper.round_complete(context.GameState))
                 context.BJLoop = new BJEnd();
             else
