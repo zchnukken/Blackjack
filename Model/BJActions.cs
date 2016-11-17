@@ -23,15 +23,30 @@ namespace Blackjack.Model
         {
 
             Console.WriteLine("Action: hit");
-            context.GameState.Deck.draw(context.GameState.Player.Hand);
-            context.BJLoop = new BJPlayerTurn();
+            if (context.BJState.GetType() == typeof(BJPlayerSplitTurn))
+            {
+                context.GameState.Deck.draw(context.GameState.Player.Split_Hand);
+                context.BJLoop = new BJPlayerSplitTurn();
+            }
+            else
+            {
+                context.GameState.Deck.draw(context.GameState.Player.Hand);
+                context.BJLoop = new BJPlayerTurn();
+            }
+            BJLogicHelper.debug_state(context.GameState);
         }
 
         public static void stand(BJLoopContext context)
         {
             Console.WriteLine("Action: stand");
-            context.GameState.Current_Player += 1;
-            context.BJLoop = new BJPlayerTurn();
+            // if split is false OR we come from a split turn 
+            if (!context.GameState.Player.Split || context.BJLoop.GetType() == typeof(BJPlayerSplitTurn))
+            {
+                context.GameState.Current_Player += 1;
+                context.BJLoop = new BJPlayerTurn();
+            }
+            else if (context.GameState.Player.Split) // should only be else
+                context.BJLoop = new BJPlayerSplitTurn();
         }
 
         /*
@@ -39,7 +54,7 @@ namespace Blackjack.Model
         */
         public static void deal(BJLoopContext context)
         {
-            while (!context.GameState.Round_Complete)
+            while (!BJLogicHelper.round_complete(context.GameState))
             {
                 context.GameState.Deck.draw(context.GameState.Player.Hand);
                 context.GameState.Current_Player += 1;
@@ -55,7 +70,7 @@ namespace Blackjack.Model
             context.GameState.Player.Wallet.Bet += context.GameState.Player.Wallet.Bet;
             context.GameState.Deck.draw(context.GameState.Player.Hand);
             context.GameState.Deck.draw(context.GameState.Player.Split_Hand);
-            context.BJLoop = new BJPlayerSplitTurn();
+            context.BJLoop = new BJPlayerTurn();
         }
 
         public static void bet(BJLoopContext context, int coin = 100)

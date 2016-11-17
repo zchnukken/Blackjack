@@ -18,11 +18,6 @@ namespace Blackjack.Model
             _active_state.action(this);
         }
 
-        public void request()
-        {
-            _active_state.action(this);
-        }
-
         public BJLoop BJLoop
         {
             get { return _active_state; }
@@ -35,36 +30,6 @@ namespace Blackjack.Model
             }
         }
 
-        public int card_value(Hand hand)
-        {
-            List<Card> cards = hand.get_hand();
-            cards.OrderByDescending(Card => Card.Value);
-            int sum = 0;
-            int num_aces = 0;
-
-            foreach (Card c in hand.get_hand())
-            {
-                int val = (int)c.Value;
-                if (val == 1)
-                {
-                    sum += 11;
-                    ++num_aces;
-                }
-                else if (val >= 11)
-                    sum += 10;
-                else
-                    sum += val;
-            }
-
-            // ugly aces
-            while (sum > 21 && num_aces-- != 0)
-            {
-                sum -= 10;
-            }
-
-            return sum;
-        }
-
         public BJLoop BJState
         {
             get { return _active_state; }
@@ -74,7 +39,7 @@ namespace Blackjack.Model
         public GameState GameState
         {
             get { return _state; }
-            private set { }
+            private set { ; }
         }
     }
 
@@ -100,6 +65,7 @@ namespace Blackjack.Model
         }
 
     }
+
     class BJStart : BJLoop
     {
         public BJStart()
@@ -116,6 +82,7 @@ namespace Blackjack.Model
         }
 
     }
+
     class BJPlayerBet : BJLoop
     {
         public BJPlayerBet()
@@ -125,7 +92,7 @@ namespace Blackjack.Model
         public override void action(BJLoopContext context)
         {
             // wait for all ppls to bet
-            if (context.GameState.Round_Complete)
+            if (BJLogicHelper.round_complete(context.GameState))
                 context.BJLoop = new BJPlayerTurn();
         }
     }
@@ -140,27 +107,21 @@ namespace Blackjack.Model
         public override void action(BJLoopContext context)
         {
 
-            if (context.GameState.Round_Complete)
+            if (BJLogicHelper.round_complete(context.GameState))
                 context.BJLoop = new BJDealerTurn();
             else {
 
-                // debug
-                context.GameState.debug_state();
+                BJLogicHelper.debug_state(context.GameState);
 
-                if(context.GameState.Player.can_split())
+                if (BJLogicHelper.cards_value(context.GameState.Player.Hand) >= BJLoop.BLACKJACK)
                 {
-                    context.BJLoop = new BJPlayerSplit();
-                }
-                else if (context.card_value(context.GameState.Player.Hand) >= BJLoop.BLACKJACK)
-                {
-                    if (!context.GameState.Player.Split)
+                    if (context.GameState.Player.Split)
+                        context.BJLoop = new BJPlayerSplitTurn();
+                    else
                     {
                         context.GameState.Current_Player += 1;
                         context.BJLoop = new BJPlayerTurn();
                     }
-                    else
-                        context.BJLoop = new BJPlayerSplitTurn();
-            
                 }
                 else
                 {
@@ -181,29 +142,9 @@ namespace Blackjack.Model
 
         public override void action(BJLoopContext context)
         {
-            Console.WriteLine("User action required....");
-            context.GameState.Player.action(context);
-
-        }
-
-        //not used
-        /*
-        public void action(BJLoop context, BJLoop loop)
-        {
-            //goto state = loop;
-        }*/
-
-    }
-
-    class BJPlayerSplit : BJLoop
-    {
-        public BJPlayerSplit()
-        {}
-
-        public override void action(BJLoopContext context)
-        {
             context.GameState.Player.action(context);
         }
+
     }
 
     class BJPlayerSplitTurn : BJLoop
@@ -213,14 +154,13 @@ namespace Blackjack.Model
 
         public override void action(BJLoopContext context)
         {
-            context.GameState.Player.Current_Hand = 1;
 
-            if (context.card_value(context.GameState.Player.Hand) >= BJLoop.BLACKJACK)
+            BJLogicHelper.debug_state(context.GameState);
+
+            if (BJLogicHelper.cards_value(context.GameState.Player.Split_Hand) >= BJLoop.BLACKJACK)
                 {
-                    context.GameState.Player.Current_Hand = 0;
                     context.GameState.Current_Player += 1;
-                    context.BJLoop = new BJPlayerTurn();
-                    
+                    context.BJLoop = new BJPlayerTurn();                
                 }
         }
     }
@@ -232,24 +172,18 @@ namespace Blackjack.Model
         }
         public override void action(BJLoopContext context)
         {
-            //super smart dealer
-            //int player_hand = context.card_value(context.GameState.Player.Hand);
-            int dealer_hand = context.card_value(context.GameState.Dealer.Hand);
+            int dealer_hand = BJLogicHelper.cards_value(context.GameState.Dealer.Hand);
 
             while (dealer_hand < 17)
             {
                 context.GameState.Deck.draw(context.GameState.Dealer.Hand);
-                dealer_hand = context.card_value(context.GameState.Dealer.Hand);
-               
-                if (dealer_hand == BLACKJACK)
-                {
-                    Console.WriteLine("dealer wins");
-                    context.BJLoop = new BJDealerWins();
-                    return; //IDK
-                }
+                dealer_hand = BJLogicHelper.cards_value(context.GameState.Dealer.Hand);
             }
 
-            context.BJLoop = new BJCalculateResults();
+            if (dealer_hand == BLACKJACK)
+                context.BJLoop = new BJDealerWins();
+            else
+                context.BJLoop = new BJCalculateResults();
         }
     }
 
@@ -262,7 +196,7 @@ namespace Blackjack.Model
         public override void action(BJLoopContext context)
         {
             //wanted to do a for each in loop but it wouldnt let me
-            if (context.GameState.Round_Complete)
+            if (BJLogicHelper.round_complete(context.GameState))
                 context.BJLoop = new BJEnd();
             else
             {
@@ -277,84 +211,24 @@ namespace Blackjack.Model
     class BJCalculateResults : BJLoop
     {
         public BJCalculateResults()
-        {
+        {}
 
-        }
         public override void action(BJLoopContext context)
         {
-            // TODO
-            // Make sure split hands are calculated correctly (bets)
-            //
-
-            if (context.GameState.Round_Complete)
-                context.BJLoop = new BJEnd();
-            else
-            {
-                int player_hand = context.card_value(context.GameState.Player.Hand);
-                int dealer_hand = context.card_value(context.GameState.Dealer.Hand);
-                // each player under 21 wins
-                if (dealer_hand > 21)
-                {
-                    if (player_hand < 21)
-                        context.GameState.Player.Wallet.Balance += context.GameState.Player.Wallet.Bet * 2;
-                    else
-                        context.GameState.Player.Wallet.Bet = 0;
-
-                    if (context.GameState.Player.Split && (context.GameState.Player.Current_Hand != 1))
-                        context.GameState.Player.Current_Hand += 1;
-                    else
-                    {
-                        Console.WriteLine("Player has " + context.GameState.Player.Wallet.Balance);
-                        context.GameState.Current_Player += 1;
-                    }
-                    context.BJLoop = new BJCalculateResults();
-                }
-                else
-                {
-                    // each player above dealer wins
-                    if (player_hand > dealer_hand && player_hand <= 21)
-                        context.GameState.Player.Wallet.Balance += context.GameState.Player.Wallet.Bet * 2;
-                    else
-                        context.GameState.Player.Wallet.Bet = 0;
-
-                    if (context.GameState.Player.Split && (context.GameState.Player.Current_Hand != 1))
-                        context.GameState.Player.Current_Hand += 1;
-                    else
-                    {
-                        Console.WriteLine("Player has " + context.GameState.Player.Wallet.Balance);
-                        context.GameState.Current_Player += 1;
-                    }
-                    context.BJLoop = new BJCalculateResults();
-                }
-            }
+            BJLogicHelper.calc_results(context.GameState);
+            context.BJLoop = new BJEnd();
         }
     }
 
     class BJEnd : BJLoop
     {
         public BJEnd()
-        {
-        }
+        {}
 
         public override void action(BJLoopContext context)
         {
-            if (context.GameState.Round_Complete)
-            {
-                context.GameState.Dealer.Hand.discard_all();
-                context.GameState.Deck.Trashpile.shuffle_back(context.GameState.Deck);
-                context.GameState.Deck.shuffle();
-                context.BJLoop = new BJStart();
-            }
-            else
-            {
-                context.GameState.Player.Current_Hand = 0;
-                if(context.GameState.Player.Split)
-                    context.GameState.Player.Split_Hand.discard_all();
-                context.GameState.Player.Split = false;
-                context.GameState.Player.Hand.discard_all();
-                context.GameState.Current_Player += 1;
-                context.BJLoop = new BJEnd();
-            }
+            BJLogicHelper.clean_up(context.GameState);
+            context.BJLoop = new BJStart();
         }
 
     }

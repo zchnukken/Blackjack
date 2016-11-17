@@ -70,6 +70,7 @@
     <Compile Include="Model\AIPlayer.cs" />
     <Compile Include="Model\BJActions.cs" />
     <Compile Include="Model\BJDealer.cs" />
+    <Compile Include="Model\BJLogicHelper.cs" />
     <Compile Include="Model\BJLoop.cs" />
     <Compile Include="Model\Wallet.cs" />
     <Compile Include="ViewModel\BlackJack.cs" />

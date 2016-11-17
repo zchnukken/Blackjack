@@ -81,7 +81,7 @@ namespace Blackjack.ViewModel
             {
                 BJLoop temp = _game_loop_context.BJLoop;
 
-                if (temp.GetType() == typeof(BJPlayerAction) || temp.GetType() == typeof(BJPlayerSplit) || temp.GetType() == typeof(BJPlayerSplitTurn))
+                if (temp.GetType() == typeof(BJPlayerAction) || temp.GetType() == typeof(BJPlayerSplitTurn))
                     return true;
 
                 return false;
@@ -99,7 +99,7 @@ namespace Blackjack.ViewModel
             {
                 BJLoop temp = _game_loop_context.BJLoop;
 
-                if (temp.GetType() == typeof(BJPlayerSplit))
+                if (_game_loop_context.GameState.Player.can_split() && temp.GetType() == typeof(BJPlayerAction))
                     return true;
 
                 return false;
@@ -135,26 +135,21 @@ namespace Blackjack.ViewModel
         
         public void hit()
         {
-            Console.WriteLine("############ DRAW CARD ########");
             BJActions.hit(_game_loop_context);
-            
         }
 
         public void stand()
         {
-            Console.WriteLine("############### STANDING ############");
             BJActions.stand(_game_loop_context);
         }
 
         public void bet()
         {
-            Console.WriteLine("############### BETTING ############");
             BJActions.bet(_game_loop_context, 100);
         }
 
         public void split()
         {
-            Console.WriteLine("############### SPLITTING ###############");
             BJActions.split(_game_loop_context);
         }
 
@@ -162,27 +157,5 @@ namespace Blackjack.ViewModel
         {
           //  update_hand();
         }
-        /*
-        private void update_hand()
-        {
-            //PlayerHand.Children.Clear();
-
-            foreach (Card c in state.get_player().get_hand().get_hand())
-            {
-                BitmapImage moo = new BitmapImage();
-                moo.BeginInit();
-                moo.UriSource = CardImageLoader.card_to_uri(c);
-                moo.EndInit();
-
-                Image img = new Image();
-                img.Height = 150;
-                img.Width = 100;
-                img.Margin = new System.Windows.Thickness(-50, 0, 0, 0);
-                img.Source = moo;
-
-               // PlayerHand.Children.Add(img);
-            }
-        }
-         * */
     }
 }

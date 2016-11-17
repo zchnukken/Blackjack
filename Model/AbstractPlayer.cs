@@ -8,11 +8,13 @@ namespace Blackjack.Model
 {
     abstract class AbstractPlayer
     {
-        protected Hand[] hands = new Hand[2];
-        protected int current_hand = 0;
+ 
+        protected Hand _hand = null;
+        protected Hand _split_hand = null;
+  
         protected Wallet wallet = new Wallet();
 
-        protected Boolean split;
+        protected Boolean _split;
         //private IIntelligence brains = null; AI or Human ? should AI be a player?
 
         /*
@@ -27,32 +29,17 @@ namespace Blackjack.Model
         /* pass AI reference ?*/
         protected AbstractPlayer(/*IIntelligence brains*/)
         {
-            hands[0] = new Hand();
-            hands[1] = null;
+            _hand = new Hand();
             /* this.AI = brains */
         }
 
         public Hand Hand
         {
             get
-            {
-                if (split)
-                    return hands[current_hand];
-                else
-                    return hands[0];
-            }
+            { return _hand; }
             private set { }
         }
 
-        public int Current_Hand
-        {
-            get { return current_hand; }
-            set
-            {
-                if (value <= 1)
-                    current_hand = value;
-            }
-        }
         public Wallet Wallet
         {
             get { return this.wallet; }
@@ -61,17 +48,17 @@ namespace Blackjack.Model
 
         public Boolean Split
         {
-            get { return split; }
+            get { return _split; }
             set
             {
-                split = value;
-                if (split)
+                _split = value;
+                if (_split)
                 {
-                    hands[1] = new Hand();
-                    hands[0].draw(hands[1]);
+                    _split_hand = new Hand();
+                    _hand.draw(_split_hand);
                 }
                 else
-                    hands[1] = null;
+                    _split_hand = null;
             }
         }
 
@@ -79,16 +66,17 @@ namespace Blackjack.Model
         {
             get
             {
-                if (hands[1] != null)
-                    return hands[1];
+                if (_split_hand != null)
+                    return _split_hand;
                 else
                     return new Hand();
             }
             private set { }
         }
+
         public Boolean can_split()
         {
-            if (!split && Hand.get_hand().Count == 2 && Wallet.Bet * 2 <= Wallet.Balance)
+            if (!_split && Hand.get_hand().Count == 2 && Wallet.Bet * 2 <= Wallet.Balance)
                 return Hand.get_hand()[0].Value == Hand.get_hand()[1].Value;
             return false;
         }

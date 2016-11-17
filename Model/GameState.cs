@@ -39,18 +39,6 @@ namespace Blackjack.Model
             }
         }
 
-        public Boolean Round_Complete
-        {
-            get
-            {
-                Boolean res = _number_of_players == _current_player;
-                if ( res)
-                    Current_Player = 0;
-                return res;
-            }
-            private set{;}
-        }
-
         public int Number_Of_Players
         {
             get { return _number_of_players; }
@@ -82,19 +70,6 @@ namespace Blackjack.Model
             get { return _dealer; }
             private set { }
         }
-
-        public void debug_state()
-        {
-            Console.WriteLine("Current player: " + Current_Player);
-            Console.WriteLine("Player has: " + Player.Wallet.Balance);
-            Console.WriteLine("Player bet: " + Player.Wallet.Bet);
-            Console.WriteLine("Player split: " + Player.Split);
-            Console.WriteLine("Player hand: \n{\n" + Player.Hand.ToString() +"}");
-            Console.WriteLine("Player split hand: \n{\n" + Player.Split_Hand.ToString()+"}");
-            Console.WriteLine("Dealer hand: \n{\n" + Dealer.Hand.ToString()+"}");
-
-        }
-
 
     }
 }

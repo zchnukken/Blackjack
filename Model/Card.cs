@@ -120,7 +120,7 @@ namespace Blackjack.Model
             String cardinhand = "";
             foreach (Card card in cont)
             {
-                cardinhand += card.ToString() + "\n";
+                cardinhand += card.ToString() + ", ";
             }
             return cardinhand;
         }
