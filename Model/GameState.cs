@@ -25,8 +25,10 @@ namespace Blackjack.Model
             //initialize array of players
             _players = new Player[_number_of_players];
 
-            for (int i = 0; i < _number_of_players; ++i)
-                _players[i] = new Player();
+            //for (int i = 0; i < _number_of_players; ++i)
+            //    _players[i] = new Player();
+            _players[0] = new Player();
+            _players[1] = new AIPlayer();
         }
 
         public int Current_Player

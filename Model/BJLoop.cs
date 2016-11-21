@@ -91,9 +91,10 @@ namespace Blackjack.Model
 
         public override void action(BJLoopContext context)
         {
-            // wait for all ppls to bet
             if (BJLogicHelper.round_complete(context.GameState))
                 context.BJLoop = new BJPlayerTurn();
+            else
+                context.GameState.Player.action(context);
         }
     }
 
@@ -158,10 +159,12 @@ namespace Blackjack.Model
             BJLogicHelper.debug_state(context.GameState);
 
             if (BJLogicHelper.cards_value(context.GameState.Player.Split_Hand) >= BJLoop.BLACKJACK)
-                {
-                    context.GameState.Current_Player += 1;
-                    context.BJLoop = new BJPlayerTurn();                
-                }
+            {
+                context.GameState.Current_Player += 1;
+                context.BJLoop = new BJPlayerTurn();
+            }
+            else
+                context.GameState.Player.action(context);
         }
     }
 
@@ -195,16 +198,12 @@ namespace Blackjack.Model
         }
         public override void action(BJLoopContext context)
         {
-            // wanted to do a for each in loop but it wouldnt let me
-            if (BJLogicHelper.round_complete(context.GameState))
-                context.BJLoop = new BJEnd();
-            else
-            {
-                context.GameState.Player.Wallet.Bet = 0;
+            BJLogicHelper.debug_state(context.GameState);
 
-                context.GameState.Current_Player += 1;
-                context.BJLoop = new BJDealerWins();
-            }        
+            foreach (Player p in context.GameState.Players)
+                p.Wallet.Bet = 0;
+
+            context.BJLoop = new BJEnd();
         }
     }
 

@@ -10,7 +10,15 @@ namespace Blackjack.Model
     {
         public override void action(BJLoopContext context)
         {
-            AIOracle.prophesise(context);
+            Type temp = context.BJLoop.GetType();
+
+            if (temp == typeof(BJPlayerBet))
+                AIOracle.bet(context);
+
+            if (context.GameState.Player.can_split())
+                AIOracle.split(context);
+            else if (temp == typeof(BJPlayerAction) || temp == typeof(BJPlayerSplitTurn))
+                AIOracle.hitstand(context);
         }
     }
 }
