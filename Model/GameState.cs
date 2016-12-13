@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Blackjack.Model
 {
     //active player
-    class GameState
+    public class GameState
     {
         private Deck _deck = new Deck(Deck.add_deck());
         private BJDealer _dealer = new BJDealer();

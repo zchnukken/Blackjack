@@ -13,20 +13,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Blackjack
+namespace Blackjack.View
 {
+    using Model;
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HandView.xaml
     /// </summary>
-    using ViewModel;
-
-    public partial class MainWindow : Window
+    /// 
+    public partial class HandView : UserControl
     {
-        
-        public MainWindow()
+        private Player _player;
+
+        public HandView(ref Player p)
         {
+            _player = p;
             InitializeComponent();
-            DataContext = new BlackJackMenu(this);
+            DataContext = this;
+        }
+
+        public Player Player
+        {
+            get { return _player; }
+            private set { ;}
         }
     }
 }

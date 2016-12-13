@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    class CardImageLoader
+    public class CardImageLoader
     {
         private static String imageDir = "C:\\Users\\Sneeky\\Documents\\Visual Studio 2013\\Projects\\maraTest\\Images\\";
         public static Uri card_to_uri(Card card)

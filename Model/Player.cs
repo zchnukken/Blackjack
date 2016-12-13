@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    class Player : AbstractPlayer
+    public class Player : AbstractPlayer
     {
         public override void action(BJLoopContext context)
         {

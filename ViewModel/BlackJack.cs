@@ -24,13 +24,14 @@ namespace Blackjack.ViewModel
 {
     using Commands;
     using Model;
+    using View;
     /*run this in program mainloop*/
-    class BlackJack
+    public class BlackJack
     {
         /**
          * holds players, dealer, deck EVERYTHING
          */
-        private GameState state = new GameState(2/*numplayers*/); // WARNING! WARNING! WTF IS HAPPENING!?
+        private GameState _state = new GameState(2/*numplayers*/); // WARNING! WARNING! WTF IS HAPPENING!?
         private BJLoopContext _game_loop_context;
 
         /*
@@ -42,13 +43,34 @@ namespace Blackjack.ViewModel
          * timers? 
          */
 
+        private HandView _hand1 = null;
+        private HandView _hand2 = null;
         public BlackJack()
         {
             _BJHit = new BJHit(this);
             _BJStand = new BJStand(this);
             _BJBet = new BJBet(this);
             _BJSplit = new BJSplit(this);
-            _game_loop_context = new BJLoopContext(ref state, new BJInit());
+            _game_loop_context = new BJLoopContext(ref _state, new BJInit());
+
+            _hand1 = new HandView(ref GameState.Players[0]);
+            _hand2 = new HandView(ref GameState.Players[1]);
+        }
+
+        public GameState GameState
+        {
+            get { return _state; }
+            private set {; }
+        }
+
+        public HandView Hand1
+        {
+            get { return _hand1; }
+        }
+
+        public HandView Hand2
+        {
+            get { return _hand2; }
         }
 
         public BJHit _BJHit

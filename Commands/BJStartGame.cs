@@ -4,18 +4,18 @@ namespace Blackjack.Commands
     using System.Windows.Input;
     using Blackjack.ViewModel;
 
-    public class BJStand : ICommand
+    public class BJStartGame : ICommand
     {
-        public BJStand(BlackJack _blackjack)
+        public BJStartGame(BlackJackMenu menu)
         {
-            _Blackjack = _blackjack;
+            _menu = menu;
         }
 
-        private BlackJack _Blackjack;
+        private BlackJackMenu _menu;
 
         public bool CanExecute(object parameter)
         {
-            return _Blackjack.can_action;
+            return _menu.can_start;
         }
 
         public event System.EventHandler CanExecuteChanged
@@ -26,7 +26,7 @@ namespace Blackjack.Commands
 
         public void Execute(object parameter)
         {
-            _Blackjack.stand();
+            _menu.startGame();
         }
     }
 }

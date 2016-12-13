@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    static class AIOracle
+    public static class AIOracle
     {
         public static void hitstand(BJLoopContext context)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    class BJDealer
+    public class BJDealer
     {
             /*
              * what is a dealer?

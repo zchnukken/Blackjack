@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Blackjack.View.BlackJackView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="1920" 
+        Height="1080">
+    
+    <Grid Background="green">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--<StackPanel Background="blue" Height="150"  Width="auto" Name="PlayerHand" Grid.ColumnSpan="2" Margin="0,502,0,37" Orientation="Horizontal" HorizontalAlignment="Center">
+        </StackPanel>-->
+        <ContentControl Background="Blue" Content="{Binding Hand1}" Grid.ColumnSpan="2" Margin="492,492,270,30"></ContentControl>
+        <ContentControl Background="White" Content="{Binding Hand2}" Margin="130,496,110,36" RenderTransformOrigin="0.5,0.5">
+            <ContentControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.117"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ContentControl.RenderTransform>
+        </ContentControl>
+
+
+        <Button Content="Hit" HorizontalAlignment="Left" Margin="322,442,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJHit}" Grid.Column="1" Height="20"/>
+        <Button Content="Stand" HorizontalAlignment="Left" Margin="322,467,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJStand}" Grid.Column="1" Height="20"/>
+        <Button Content="Bet 100" HorizontalAlignment="Left" Margin="322,517,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJBet}" Grid.Column="1" Height="20"/>
+        <Button Content="Split" HorizontalAlignment="Left" Margin="322,492,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJSplit}" Grid.Column="1" Height="20"/>
+
+    </Grid>
+</UserControl>

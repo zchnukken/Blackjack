@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Blackjack.Model
 {
 
-    class BJLoopContext {
+    public class BJLoopContext {
 
         private GameState _state;
         private BJLoop _active_state;
@@ -43,7 +43,7 @@ namespace Blackjack.Model
         }
     }
 
-    abstract class BJLoop
+    public abstract class BJLoop
     {
         public static int BLACKJACK = 21;
         public BJLoop() { }
@@ -52,7 +52,7 @@ namespace Blackjack.Model
 
     }
 
-    class BJInit : BJLoop
+    public class BJInit : BJLoop
     {
         public BJInit()
         {
@@ -66,7 +66,7 @@ namespace Blackjack.Model
 
     }
 
-    class BJStart : BJLoop
+    public class BJStart : BJLoop
     {
         public BJStart()
         {
@@ -83,7 +83,7 @@ namespace Blackjack.Model
 
     }
 
-    class BJPlayerBet : BJLoop
+    public class BJPlayerBet : BJLoop
     {
         public BJPlayerBet()
         { 
@@ -99,7 +99,7 @@ namespace Blackjack.Model
     }
 
     //checks game logic for a current player
-    class BJPlayerTurn : BJLoop
+    public class BJPlayerTurn : BJLoop
     {
         public BJPlayerTurn()
         {
@@ -134,7 +134,7 @@ namespace Blackjack.Model
     }
 
     // doesnt do anything really
-    class BJPlayerAction : BJLoop
+    public class BJPlayerAction : BJLoop
     {
 
         public BJPlayerAction()
@@ -148,7 +148,7 @@ namespace Blackjack.Model
 
     }
 
-    class BJPlayerSplitTurn : BJLoop
+    public class BJPlayerSplitTurn : BJLoop
     {
         public BJPlayerSplitTurn()
         {}
@@ -168,7 +168,7 @@ namespace Blackjack.Model
         }
     }
 
-    class BJDealerTurn : BJLoop
+    public class BJDealerTurn : BJLoop
     {
         public BJDealerTurn()
         {
@@ -190,7 +190,7 @@ namespace Blackjack.Model
         }
     }
 
-    class BJDealerWins : BJLoop
+    public class BJDealerWins : BJLoop
     {
         public BJDealerWins()
         {
@@ -207,7 +207,7 @@ namespace Blackjack.Model
         }
     }
 
-    class BJCalculateResults : BJLoop
+    public class BJCalculateResults : BJLoop
     {
         public BJCalculateResults()
         {}
@@ -219,7 +219,7 @@ namespace Blackjack.Model
         }
     }
 
-    class BJEnd : BJLoop
+    public class BJEnd : BJLoop
     {
         public BJEnd()
         {}

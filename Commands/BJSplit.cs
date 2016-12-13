@@ -4,7 +4,7 @@ namespace Blackjack.Commands
     using System.Windows.Input;
     using Blackjack.ViewModel;
 
-    internal class BJSplit : ICommand
+    public class BJSplit : ICommand
     {
         public BJSplit(BlackJack _blackjack)
         {

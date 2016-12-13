@@ -1,21 +1,19 @@
 ﻿<Window x:Class="Blackjack.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BlackJack" Height="720" Width="1080">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        Title="BlackJack" Height="1080" Width="1920"
+        xmlns:viewmodels="clr-namespace:Blackjack.ViewModel"
+        xmlns:views="clr-namespace:Blackjack.View"
+        WindowState="Maximized"
+        WindowStyle="None">
 
-        <StackPanel Height="150"  Width="auto" Name="PlayerHand" Grid.ColumnSpan="2" Margin="0,502,0,37" Orientation="Horizontal" HorizontalAlignment="Center">
-        </StackPanel>
-
-
-        <Button Content="Hit" HorizontalAlignment="Left" Margin="322,442,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJHit}" Grid.Column="1" Height="20"/>
-        <Button Content="Stand" HorizontalAlignment="Left" Margin="322,467,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJStand}" Grid.Column="1" Height="20"/>
-        <Button Content="Bet 100" HorizontalAlignment="Left" Margin="322,517,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJBet}" Grid.Column="1" Height="20"/>
-        <Button Content="Split" HorizontalAlignment="Left" Margin="322,492,0,0" VerticalAlignment="Top" Width="75" Command="{Binding _BJSplit}" Grid.Column="1" Height="20"/>
-
-    </Grid>
+    <Window.Resources>
+        <DataTemplate x:Name="blackJackView" DataType="{x:Type viewmodels:BlackJack}">
+            <views:BlackJackView DataContext="{Binding}"></views:BlackJackView>
+        </DataTemplate>
+        <DataTemplate x:Name="mainMenuView" DataType="{x:Type viewmodels:BlackJackMenu}">
+            <views:MainWindowView DataContext="{Binding}"></views:MainWindowView>
+        </DataTemplate>
+    </Window.Resources>
+    <ContentControl Content="{Binding}"></ContentControl>
 </Window>

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    class Wallet
+    public class Wallet : INotifyPropertyChanged
     {
         private int _balance;
         private int _bet;
@@ -34,5 +35,6 @@ namespace Blackjack.Model
                 }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

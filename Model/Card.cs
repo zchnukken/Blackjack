@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 namespace Blackjack.Model
 {
     //using Cards = Stack<Card>;
-    using Cards = List<Card>;
+    using Cards = ObservableCollection<Card>;
 
-    enum Value 
+    public enum Value 
     {
         Ace = 1
         ,Two 
@@ -26,7 +27,7 @@ namespace Blackjack.Model
         ,King
     };
 
-    enum Suite
+    public enum Suite
     {
         Heart
         ,Diamond
@@ -35,7 +36,7 @@ namespace Blackjack.Model
     };
 
     /* Generic card class */
-    class Card
+    public class Card
     {
         private Value value   = 0;
         private Suite suite = 0;
@@ -87,10 +88,16 @@ namespace Blackjack.Model
     
     }
 
-    abstract class CardContainer
+    public abstract class CardContainer
     {
         protected Cards cont = new Cards();
         protected Trash trashpile = Trash.Instance();
+
+        public Cards Cards
+        {
+            get { return this.cont; }
+            private set {; }
+        }
 
         public void draw(CardContainer container, int i = 0)
         {
@@ -144,11 +151,12 @@ namespace Blackjack.Model
         }
     }
 
-    class Hand : CardContainer
+    public class Hand : CardContainer
     {
 
         public Hand()
         { }
+
 
         /* perhaps not nescessary */
         public Cards get_hand()
@@ -161,8 +169,8 @@ namespace Blackjack.Model
         }
 
     }
-    
-    class Deck : CardContainer
+
+    public class Deck : CardContainer
     {
         public Deck(Cards cards)
         {
@@ -205,7 +213,7 @@ namespace Blackjack.Model
 
     }
 
-    class Trash : CardContainer
+    public class Trash : CardContainer
     {
         static public Trash trashPile = new Trash();
         

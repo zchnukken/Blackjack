@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Blackjack.Model
-{   
+{
     /*public enum UserActions
     {
         bet,
@@ -16,7 +16,7 @@ namespace Blackjack.Model
         emote
     };*/
 
-    static class BJActions
+    public static class BJActions
     {
         //private GameState _state;
         public static void hit(BJLoopContext context)

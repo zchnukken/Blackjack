@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    static class BJLogicHelper
+    public static class BJLogicHelper
     {
         /*transform a hand value into a blackjack hand value*/
         public static int cards_value(Hand hand)

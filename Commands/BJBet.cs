@@ -4,7 +4,7 @@ namespace Blackjack.Commands
     using System.Windows.Input;
     using Blackjack.ViewModel;
 
-    internal class BJBet : ICommand
+    public class BJBet : ICommand
     {
         public BJBet(BlackJack _blackjack)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
-    abstract class AbstractPlayer
+    public abstract class AbstractPlayer
     {
  
         protected Hand _hand = null;

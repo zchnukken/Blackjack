@@ -13,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Blackjack
+namespace Blackjack.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BlackJackView.xaml
     /// </summary>
-    using ViewModel;
-
-    public partial class MainWindow : Window
+    public partial class BlackJackView : UserControl
     {
-        
-        public MainWindow()
+        public BlackJackView()
         {
             InitializeComponent();
-            DataContext = new BlackJackMenu(this);
         }
     }
 }
