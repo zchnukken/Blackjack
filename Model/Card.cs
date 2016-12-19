@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Model
 {
+    using System.Windows.Media.Imaging;
     //using Cards = Stack<Card>;
     using Cards = ObservableCollection<Card>;
 
@@ -59,8 +60,25 @@ namespace Blackjack.Model
             set { this.suite = value; }
         }
 
+        public String Name
+        {
+            get { return ToString(); }
+        }
 
-       public override string ToString()
+        public BitmapImage Image
+        {
+            get
+            {
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.UriSource = CardImageLoader.card_to_uri(this);
+                bmp.EndInit();
+                return bmp;
+            }
+        }
+
+
+        public override string ToString()
         { return value.ToString() + " of " + suite.ToString() + "s"; }
 
 

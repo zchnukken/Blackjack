@@ -45,6 +45,8 @@ namespace Blackjack.ViewModel
 
         private HandView _hand1 = null;
         private HandView _hand2 = null;
+        private DealerView _dealerhand = null;
+
         public BlackJack()
         {
             _BJHit = new BJHit(this);
@@ -53,8 +55,9 @@ namespace Blackjack.ViewModel
             _BJSplit = new BJSplit(this);
             _game_loop_context = new BJLoopContext(ref _state, new BJInit());
 
-            _hand1 = new HandView(ref GameState.Players[0]);
-            _hand2 = new HandView(ref GameState.Players[1]);
+            _hand1 = new HandView(GameState.Players[0]);
+            _hand2 = new HandView(GameState.Players[1]);
+            _dealerhand = new DealerView(GameState.Dealer);
         }
 
         public GameState GameState
@@ -71,6 +74,11 @@ namespace Blackjack.ViewModel
         public HandView Hand2
         {
             get { return _hand2; }
+        }
+
+        public DealerView DealerHand
+        {
+            get { return _dealerhand; }
         }
 
         public BJHit _BJHit

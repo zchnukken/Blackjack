@@ -8,7 +8,7 @@ namespace Blackjack.Model
 {
     public class CardImageLoader
     {
-        private static String imageDir = "C:\\Users\\Sneeky\\Documents\\Visual Studio 2013\\Projects\\maraTest\\Images\\";
+        private static String imageDir = "C:\\Users\\Anton\\Documents\\Visual Studio 2015\\Projects\\Blackjack\\blackjack\\Images\\";
         public static Uri card_to_uri(Card card)
         {
             String str = card.ToString().ToLower().Replace(' ','_');

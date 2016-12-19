@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blackjack.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +16,16 @@ using System.Windows.Shapes;
 
 namespace Blackjack.View
 {
-    using Model;
     /// <summary>
-    /// Interaction logic for HandView.xaml
+    /// Interaction logic for DealerView.xaml
     /// </summary>
-    /// 
-    public partial class HandView : UserControl
+    public partial class DealerView : UserControl
     {
 
-        public HandView(Player p)
+        public DealerView(BJDealer dealer)
         {
             InitializeComponent();
-            DataContext = p;
+            DataContext = dealer;
         }
     }
 }

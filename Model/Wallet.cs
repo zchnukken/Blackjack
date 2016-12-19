@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,9 @@ namespace Blackjack.Model
         public int Balance
         {
             get { return _balance;}
-            set { _balance = value; }
+            set { _balance = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public int Bet
@@ -29,10 +32,19 @@ namespace Blackjack.Model
             set {
                     if (value <= _balance)
                     {
-                        _balance -= value;
+                        Balance -= value;
                         _bet = value;
+                        NotifyPropertyChanged();
                     }
                 }
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
