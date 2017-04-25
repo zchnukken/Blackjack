@@ -31,7 +31,9 @@ namespace Blackjack.ViewModel
         /**
          * holds players, dealer, deck EVERYTHING
          */
-        private GameState _state = new GameState(2/*numplayers*/); // WARNING! WARNING! WTF IS HAPPENING!?
+
+        // TODO - Get numplayers from view
+        private GameState _state = new GameState(2/*numplayers*/); 
         private BJLoopContext _game_loop_context;
 
         /*

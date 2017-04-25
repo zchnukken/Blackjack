@@ -13,7 +13,7 @@ namespace Blackjack.Model
         private BJDealer _dealer = new BJDealer();
  
 
-        private Player[] _players; // loool
+        private Player[] _players;
 
         private int _current_player = 0;
         private int _number_of_players;

@@ -50,3 +50,26 @@ C:\Users\Sneeky\Documents\Visual Studio 2013\Projects\Blackjack\Blackjack\obj\De
 C:\Users\Sneeky\Documents\Visual Studio 2013\Projects\Blackjack\Blackjack\obj\Debug\maraTest.g.resources
 C:\Users\Sneeky\Documents\Visual Studio 2013\Projects\Blackjack\Blackjack\obj\Debug\Blackjack.Properties.Resources.resources
 C:\Users\Sneeky\Documents\Visual Studio 2013\Projects\Blackjack\Blackjack\obj\Debug\Blackjack.csproj.GenerateResource.Cache
+C:\Users\Anton\Documents\GitHub\Blackjack\bin\Debug\maraTest.exe.config
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\maraTest.exe
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\maraTest.pdb
+C:\Users\Anton\Documents\GitHub\Blackjack\bin\Debug\maraTest.exe
+C:\Users\Anton\Documents\GitHub\Blackjack\bin\Debug\maraTest.pdb
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\Blackjack.csprojResolveAssemblyReference.cache
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\BlackJackMenuView.baml
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\BlackJackView.baml
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\HandView.baml
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\MainWindow.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\BlackJackMenuView.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\BlackJackView.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\DealerView.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\HandView.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\App.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\maraTest_MarkupCompile.cache
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\maraTest_MarkupCompile.lref
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\MainWindow.baml
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\View\DealerView.baml
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\maraTest.g.resources
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\Blackjack.Properties.Resources.resources
+C:\Users\Anton\Documents\GitHub\Blackjack\obj\Debug\Blackjack.csproj.GenerateResource.Cache

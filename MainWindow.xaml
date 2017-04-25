@@ -1,10 +1,9 @@
 ﻿<Window x:Class="Blackjack.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BlackJack" Height="1080" Width="1920"
+        Title="BlackJack" Height="720" Width="1280"
         xmlns:viewmodels="clr-namespace:Blackjack.ViewModel"
         xmlns:views="clr-namespace:Blackjack.View"
-        WindowState="Maximized"
         WindowStyle="None">
 
     <Window.Resources>
